@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Article } from './Article.entity';
+import { Article } from '../../entity/article.entity';
 
 @Injectable()
 export class ArticleService {
@@ -13,8 +13,8 @@ export class ArticleService {
   async getArticleList(): Promise<Article[]> {
     return this.articleRepository.find();
   }
-
-  getArticleById(): string {
-    return '获取列表数据1112122';
+  // 获取指定条目数据
+  getArticleById(): Promise<Article> {
+    return this.articleRepository.findOneBy({ id: 1 });
   }
 }

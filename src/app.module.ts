@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-// import { AppController } from './app.controller';
-import { ProductModule } from './modules/ProductList/product.module';
-// import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ProductModule } from './modules/ProductList/product.module';
 import { ArticleModule } from './modules/articles/article.module';
 
 @Module({

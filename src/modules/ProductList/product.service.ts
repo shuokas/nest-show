@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './product.entity';
+import { User } from '../../entity/product.entity';
 @Injectable()
 export class ProductService {
   constructor(
@@ -9,6 +9,7 @@ export class ProductService {
     private userRepository: Repository<User>,
   ) {}
   async findAll(): Promise<User[]> {
+    console.log('this.userRepository', this.userRepository);
     return this.userRepository.find();
   }
 

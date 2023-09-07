@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Article {
+export class Paper {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -9,17 +9,9 @@ export class Article {
   category: string;
 
   @Column()
-  title: string;
-
-  @Column()
   content: string;
 
-  @Column()
-  create_time: string;
+  // 其他字段...
 
-  @Column()
-  upadte_time: string;
-
-  @Column()
-  create_user: string;
+  // 可以定义各种与用户相关的方法和关联关系
 }

@@ -14,4 +14,9 @@ export class ArticlesController {
   getArticleList(): any {
     return this.articlesService.getArticleList();
   }
+
+  @Get('/detail')
+  getArticleById(): any {
+    return this.articlesService.getArticleById();
+  }
 }
