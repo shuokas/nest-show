@@ -17,7 +17,7 @@ import { ArticleModule } from './modules/articles/article.module';
         password: configService.get('DATABASE_PASSWORD'), // 数据库密码
         database: configService.get('DATABASE_NAME'), // 数据库名称
         entities: [__dirname + '/**/*.entity.{js,ts}'], // 实体类所在的路径
-        synchronize: true, // 自动同步数据库结构
+        synchronize: false, // 自动同步数据库结构
       }),
     }),
     ProductModule,
