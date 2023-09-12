@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Article } from '../../entity/article.entity';
-import { CreateArticleDto } from './article.dto';
+import { CreateArticleDto, UpdateArticleDto } from './article.dto';
+// node中使用 import引入方式会报错 => ERROR [ExceptionsHandler] (0 , dayjs_1.default) is not a function
+const dayjs = require('dayjs');
 
 @Injectable()
 export class ArticleService {
@@ -24,11 +26,22 @@ export class ArticleService {
     let articleObj = new Article();
     articleObj = {
       ...createArticleDto,
-      create_time: '2023-09-10 17:39:49',
-      // update_time: '',
+      create_time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     };
-    console.log('ssss', articleObj);
-
     return this.articleRepository.save(articleObj);
+  }
+  // 编辑文章
+  updateArticle(id: number, updateArticleDto: UpdateArticleDto) {
+    // 处理创建文章的逻辑，可以将数据保存到数据库中等
+    let articleObj = new Article();
+    articleObj = {
+      ...updateArticleDto,
+      update_time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+    };
+    return this.articleRepository.update(+id, articleObj);
+  }
+  // 删除文章
+  deleteArticle(id: number) {
+    return this.articleRepository.delete(+id);
   }
 }

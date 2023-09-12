@@ -1,15 +1,19 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
-import { CreateArticleDto } from './article.dto';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Patch,
+  Body,
+  Delete,
+} from '@nestjs/common';
+import { CreateArticleDto, UpdateArticleDto } from './article.dto';
 import { ArticleService } from './article.service';
 
 @Controller('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticleService) {}
 
-  //   @Get(':articleId')
-  //   getArticleById(@Param(':articleId') articleId: string) {
-  //     return this.articlesService.getArticleById();
-  //   }
   // 查询列表
   @Get('/list')
   getArticleList(): any {
@@ -24,5 +28,18 @@ export class ArticlesController {
   @Post('add')
   addArticle(@Body() createArticleDto: CreateArticleDto) {
     return this.articlesService.createArticle(createArticleDto);
+  }
+  // 编辑数据
+  @Patch('update/:id')
+  updateArticleById(
+    @Param('id') id: number,
+    @Body() updateArticleDto: UpdateArticleDto,
+  ) {
+    return this.articlesService.updateArticle(id, updateArticleDto);
+  }
+  // 删除
+  @Delete('delete/:id')
+  deleteArticleById(@Param('id') id: number) {
+    return this.articlesService.deleteArticle(id);
   }
 }
